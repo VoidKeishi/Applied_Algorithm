@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define INF 1000000000
 #define MAX_N 20
 int n, dist[MAX_N][MAX_N];
 
@@ -10,9 +9,9 @@ int n, dist[MAX_N][MAX_N];
 
 bool visited[MAX_N];
 int step[MAX_N];
-int ans = INF;
+int ans = INT_MAX;
 int sum = 0;
-int Min = INF;
+int Min = INT_MAX;
 
 void Try(int k){
     for (int i = 0; i < n; i++){
@@ -20,10 +19,12 @@ void Try(int k){
             step[k] = i;
             visited[i] = true;
             sum += dist[step[k-1]][step[k]];
+            // Neu da di het n thanh pho thi tinh tong quang duong va cap nhat dap an
             if (k == (n - 1) && sum + dist[step[k]][0] < ans)
             {
                 ans = sum + dist[step[k]][0];
             }
+            // Neu chua di het n thanh pho
             else if (sum+Min*(n-k+1)<ans){
                 Try(k+1);
             }
@@ -54,27 +55,27 @@ int main(){
 // Time complexity: O(n^2 * 2^n)
 // Space complexity: O(n * 2^n)
 
-int dp[MAX_N][1 << MAX_N];
+// int dp[MAX_N][1 << MAX_N];
 
-int tsp(int pos, int mask){
-    if (mask == (1 << n) - 1) return dist[pos][0];
-    if (dp[pos][mask] != -1) return dp[pos][mask];
-    int ans = INF;
-    for (int i = 0; i < n; i++){
-        if ((mask & (1 << i)) == 0){
-            ans = min(ans, dist[pos][i] + tsp(i, mask | (1 << i)));
-        }
-    }
-    return dp[pos][mask] = ans;
-}
-int main(){
-    memset(dp, -1, sizeof(dp));
-    cin >> n;
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++) {
-            cin >> dist[i][j];
-        }
-    }
-    cout << tsp(0, 1) << endl;
-}
+// int tsp(int pos, int mask){
+//     if (mask == (1 << n) - 1) return dist[pos][0];
+//     if (dp[pos][mask] != -1) return dp[pos][mask];
+//     int ans = INF;
+//     for (int i = 0; i < n; i++){
+//         if ((mask & (1 << i)) == 0){
+//             ans = min(ans, dist[pos][i] + tsp(i, mask | (1 << i)));
+//         }
+//     }
+//     return dp[pos][mask] = ans;
+// }
+// int main(){
+//     memset(dp, -1, sizeof(dp));
+//     cin >> n;
+//     for(int i = 0; i < n; i++){
+//         for(int j = 0; j < n; j++) {
+//             cin >> dist[i][j];
+//         }
+//     }
+//     cout << tsp(0, 1) << endl;
+// }
 
