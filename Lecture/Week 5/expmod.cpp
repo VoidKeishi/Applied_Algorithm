@@ -9,6 +9,9 @@ int main(){
     cin >> a >> b;
     a %= X;
     b %= X - 1;
+    //c = b % (x-1)
+    //c % (x-1) = b % (x-1)
+    //a^b % x = a^c % x
     for (int i = 1; i <= b; i++){
         ans *= a;
         ans = ans % X;

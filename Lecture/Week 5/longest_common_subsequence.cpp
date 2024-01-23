@@ -29,3 +29,4 @@ int main(){
     }
     cout << L[m][n];
 }
+
