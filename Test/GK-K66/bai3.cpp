@@ -26,9 +26,9 @@ int main(){
                 dp[i][j] = min(dp[i-1][j-1],dp[i][j]);
                 dp[i][j] += a[i][j];
             }
-            else dp[i][j]=INT64_MAX;
+            else dp[i][j]=INT32_MAX;
         }
     }
-
+    if (dp[m-1][n-1] > 100000000) dp[m-1][n-1]=-1;
     cout << dp[m-1][n-1];
 }
