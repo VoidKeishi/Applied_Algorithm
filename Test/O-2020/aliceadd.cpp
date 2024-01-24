@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+int t;
 unsigned long long a,b;
 
 string cal_sum(){
@@ -13,7 +15,10 @@ string cal_sum(){
 }
 
 int main(){
-    cin >> a >> b;
-    cout << cal_sum();
+    cin >> t;
+    for (int i=0;i<t;i++){
+        cin >> a >> b;
+        cout << cal_sum();
+    }
     return 0;
 }
